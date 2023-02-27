@@ -7,8 +7,8 @@ const BudgetControl = () => {
         (state) => ({ budget: state.budget })
     );
 
-    const quantityFormat = (quantity) => {
-        return quantity.toLocaleString( 'en-US' , {
+    const amountFormat = (amount) => {
+        return amount.toLocaleString( 'en-US' , {
             style: 'currency',
             currency: 'USD'
         })
@@ -22,13 +22,13 @@ const BudgetControl = () => {
 
       <div className='budget-content'>
         <p>
-            <span>Budget:</span> {quantityFormat(budget)}
+            <span>Budget:</span> {amountFormat(budget)}
         </p>
         <p>
-            <span>Available:</span> {quantityFormat(budget)}
+            <span>Available:</span> {amountFormat(budget)}
         </p>
         <p>
-            <span>Spent:</span> {quantityFormat(budget)}
+            <span>Spent:</span> {amountFormat(budget)}
         </p>
       </div>
     </div>
