@@ -1,32 +1,11 @@
 import { create } from "zustand";
 
 export const useStore = create((set, get) => ({
-  todos: [
-    {
-      id: 1,
-      title: 'Watch the next Marvel Movie',
-      completed: false,
-    },
-    {
-      id: 2,
-      title: 'Record the next Video',
-     completed: false,
-    },
-    {
-      id: 3,
-      title: 'Wash the dishes',
-      completed: false,
-    },
-    {
-      id: 4,
-      title: 'Study 2 hours',
-      completed: false,
-    }
-  ],
+  budget: 0,
   title: "",
   activeFilter: 'all',
   filteredTodos: [],
-  setTodos: (newTodo) => set({ todos: newTodo }),
+  setBudget: (newBudget) => set({ budget: newBudget }),
   setTitle: (newTitle) => set({ title: newTitle }),
   setActiveFilter: (newActiveFilter) => set({ activeFilter: newActiveFilter }),
   setFilteredTodos: (newFilteredTodos) => set({ filteredTodos: newFilteredTodos }),
