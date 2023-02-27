@@ -30,6 +30,24 @@ const Modal = () => {
 
       <form className={`form ${ animationModal ? 'animation' : 'close'}`}>
         <legend>New Expense</legend>
+
+        <div className='field'>
+            <label htmlFor="name">Expense Name</label>
+            <input 
+                id="name"
+                type="text" 
+                placeholder="Add the expense name"
+            />
+        </div>
+
+        <div className='field'>
+            <label htmlFor="amount">Expense Name</label>
+            <input 
+                id="amount"
+                type="number" 
+                placeholder="Add the expense name"
+            />
+        </div>
       </form>
     </div>
   )
