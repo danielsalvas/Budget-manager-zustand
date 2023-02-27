@@ -3,11 +3,12 @@ import { create } from "zustand";
 export const useStore = create((set, get) => ({
   budget: 0,
   isValidBudget: false,
-  activeFilter: 'all',
-  filteredTodos: [],
+  modal: false,
+  animationModal: false,
   setBudget: (newBudget) => set({ budget: newBudget }),
   setIsValidBudget: (newState) => set({ isValidBudget: newState }),
-  setActiveFilter: (newActiveFilter) => set({ activeFilter: newActiveFilter }),
+  setModal: (newState) => set({ modal: newState }),
+  setAnimationModal: (newState) => set({ animationModal: newState }),
   setFilteredTodos: (newFilteredTodos) => set({ filteredTodos: newFilteredTodos }),
   addTodo: (title) => {
 

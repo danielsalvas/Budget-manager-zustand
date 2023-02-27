@@ -164,22 +164,22 @@ header h1 {
 
     transform: translateY(5rem);
 }
-.dos-columnas {
+.two-columns {
     flex-direction: column;
 }
-.dos-columnas :first-child {
+.two-columns :first-child {
     margin-bottom: 4rem;
 }
 @media (min-width: 768px) {
-    .dos-columnas {
+    .two-columns {
         flex-direction: row;
         align-items: center;
         gap: 4rem;
     }
-    .dos-columnas > div {
+    .two-columns > div {
         width: 50%;
     }
-    .dos-columnas :first-child {
+    .two-columns :first-child {
         margin-bottom: 0;
     }
 }
@@ -193,25 +193,25 @@ header h1 {
     width: 25rem;
 }
 
-.contenido-presupuesto {
+.budget-content {
     width: 100%;
 }
-.contenido-presupuesto p {
+.budget-content p {
     font-weight: 400;
     color: var(--dark-gray);
     font-size: 2.4rem;
     text-align: center;
 }
 @media (min-width: 768px) {
-    .contenido-presupuesto p {
+    .budget-content p {
         text-align: left;
     }
 }
-.contenido-presupuesto p.negativo,
-.contenido-presupuesto p.negativo span {
+.budget-content p.negativo,
+.budget-content p.negativo span {
     color: red;
 }
-.contenido-presupuesto span {
+.budget-content span {
     font-weight: 900;
     color: var(--blue);
 }
@@ -322,16 +322,31 @@ main {
     font-weight: 400;
 }
 
-.nuevo-gasto {
+.new-expense {
+    display: flex;
     position: fixed;
     bottom: 5rem;
     right: 5rem;
 }
 
-.nuevo-gasto img {
-    width: 5rem;
+.new-expense .new {
+    margin: auto auto;
+    font-weight: 900;
+    color: var(--blue);
+    font-size: 2.4rem;
 }
-.nuevo-gasto img:hover {
+
+@media (max-width: 768px){
+    .new-expense .new {
+        display: none;
+    }
+}
+
+.new-expense img {
+    width: 5rem;
+    margin: 10px;
+}
+.new-expense img:hover {
     cursor: pointer;
 }
 
@@ -343,15 +358,17 @@ main {
     right: 0;
     bottom: 0;
 }
-.modal .cerrar-modal {
+.modal .close-modal {
     position: absolute;
     right: 3rem;
     top: 3rem;
     width: 3rem;
     height: 3rem;
+    cursor: pointer;
 }
-.modal .cerrar-modal img {
+.modal .close-modal img {
     width: 100%;
+    cursor: pointer;
 }
 
 .modal .form {
@@ -369,12 +386,12 @@ body .modal {
     overflow: hidden;
 }
 
-.modal .form.animar {
+.modal .form.animation {
     position: relative;
     opacity: 1;
 }
 
-.modal .form.cerrar {
+.modal .form.close {
     opacity: 0;
 }
 
