@@ -4,22 +4,29 @@ import Message from "./Message"
 
 const NewBudget = () => {
 
+    //States, Constants and Variables
+
     const [message, setMessage] = useState('')
 
     const { budget } = useStore(
-        (state) => ({
-        budget: state.budget
-        })
+        (state) => ({ budget: state.budget })
     );
 
-    const { setBudget } = useStore();
+    const { setBudget, setIsValidBudget } = useStore();
+
+    //Functions
 
     const handleBudget = (e) => {
         e.preventDefault()
 
-        if (!Number(budget) || Number(budget) < 0) {
+        if (!budget || budget < 0) {
             setMessage('Please set a valid budget')
+            return
         }
+
+        setMessage('')
+
+        setIsValidBudget(true)
     }
 
   return (
@@ -29,10 +36,10 @@ const NewBudget = () => {
             <label> What is your budget? </label>
             <input 
                 className="new-budget"
-                type="text" 
+                type="number" 
                 placeholder="Budget"
                 value={budget}
-                onChange= { (e) => setBudget(e.target.value)}
+                onChange= { (e) => setBudget(Number(e.target.value))}
             />
 
             <input type="submit" value='Add' />

@@ -2,11 +2,11 @@ import { create } from "zustand";
 
 export const useStore = create((set, get) => ({
   budget: 0,
-  title: "",
+  isValidBudget: false,
   activeFilter: 'all',
   filteredTodos: [],
   setBudget: (newBudget) => set({ budget: newBudget }),
-  setTitle: (newTitle) => set({ title: newTitle }),
+  setIsValidBudget: (newState) => set({ isValidBudget: newState }),
   setActiveFilter: (newActiveFilter) => set({ activeFilter: newActiveFilter }),
   setFilteredTodos: (newFilteredTodos) => set({ filteredTodos: newFilteredTodos }),
   addTodo: (title) => {
