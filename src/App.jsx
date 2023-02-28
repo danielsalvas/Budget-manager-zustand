@@ -6,13 +6,14 @@ import { useStore } from './store'
 
 function App() {
 
-  const { isValidBudget, modal } = useStore(
+  const { isValidBudget, modal, expenses } = useStore(
     (state) => ({ 
       isValidBudget: state.isValidBudget, 
-      modal: state.modal 
+      modal: state.modal,
+      expenses: state.expenses,
     }));
 
-  const { setModal, setAnimationModal } = useStore();
+  const { setModal, setAnimationModal, setExpenses } = useStore();
 
   const handleNewExpense = () => {
     setModal(true)
@@ -20,6 +21,10 @@ function App() {
     setTimeout(() => {
       setAnimationModal(true)
     }, 300);
+  }
+
+  const keepExpense = (expense) => {
+    setExpenses([...expenses, expense])
   }
 
   return (
@@ -39,7 +44,7 @@ function App() {
         </div>
       )}
 
-      {modal && <Modal /> }
+      {modal && <Modal keepExpense={keepExpense} /> }
     </div>
   )
 }

@@ -5,27 +5,18 @@ export const useStore = create((set, get) => ({
   isValidBudget: false,
   modal: false,
   animationModal: false,
+  name: '',
+  amount: 0,
+  category: '',
+  expenses: [],
   setBudget: (newBudget) => set({ budget: newBudget }),
   setIsValidBudget: (newState) => set({ isValidBudget: newState }),
   setModal: (newState) => set({ modal: newState }),
   setAnimationModal: (newState) => set({ animationModal: newState }),
-  setFilteredTodos: (newFilteredTodos) => set({ filteredTodos: newFilteredTodos }),
-  addTodo: (title) => {
-
-    const todos = get().todos
-    const lastId = todos.length > 0 ? todos[todos.length -1].id : 1;
-      
-      const newTodo = {
-        id: lastId + 1,
-        title,
-        completed: false
-      }
-  
-      const todoList = [...todos]
-      todoList.push(newTodo)
-  
-      get().setTodos(todoList);
-  },
+  setName: (newName) => set({ name: newName }),
+  setAmount: (newAmount) => set({ amount: newAmount }),
+  setCategory: (newCategory) => set({ category: newCategory }),
+  setExpenses: (Expenses) => set({ expenses: Expenses }),
   handleSetCompleted: (id) => {
 
     const todos = get().todos
