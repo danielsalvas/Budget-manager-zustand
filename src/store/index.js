@@ -17,38 +17,5 @@ export const useStore = create((set, get) => ({
   setAmount: (newAmount) => set({ amount: newAmount }),
   setCategory: (newCategory) => set({ category: newCategory }),
   setExpenses: (Expenses) => set({ expenses: Expenses }),
-  handleSetCompleted: (id) => {
 
-    const todos = get().todos
-    const updatedList = todos.map( todo => {
-      if (todo.id === id) {
-        return { ...todo, completed: !todo.completed}
-      }
-
-      return todo;
-    })
-
-    get().setTodos(updatedList)
-  },
-  handleDelete: (id) => {
-
-    const todos = get().todos
-    const updatedList = todos.filter( todo => todo.id !== id)
-    get().setTodos(updatedList)
-  },
-  handleClearCompleted: () => {
-
-    const todos = get().todos
-    const updatedList = todos.filter( todo => !todo.completed)
-    get().setTodos(updatedList)
-  },
-  showAllTodos: () => {
-    get().setActiveFilter('all')
-  },
-  showActiveTodos: () => {
-    get().setActiveFilter('active')
-  },
-  showCompletedTodos: () => {
-    get().setActiveFilter('completed')
-  }
 }));
