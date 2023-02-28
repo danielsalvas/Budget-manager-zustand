@@ -38,7 +38,7 @@ function App() {
   }
 
   return (
-    <div className={modal && 'fixed'}>
+    <div className={modal ? 'fixed' : ''}>
         <Header />
 
       { isValidBudget && (

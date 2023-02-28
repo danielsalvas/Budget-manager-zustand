@@ -1,18 +1,27 @@
-import React from 'react'
+import { useState, useEffect } from 'react';
 import { useStore } from '../store';
+import { amountFormat } from '../helpers';
 
 const BudgetControl = () => {
 
-    const { budget } = useStore(
-        (state) => ({ budget: state.budget })
+    const [available, setAvailable] = useState(0)
+    const [spent, setSpent] = useState(0)
+
+    const { budget, expenses } = useStore(
+        (state) => ({ 
+          budget: state.budget,
+          expenses: state.expenses
+        })
     );
 
-    const amountFormat = (amount) => {
-        return amount.toLocaleString( 'en-US' , {
-            style: 'currency',
-            currency: 'USD'
-        })
-    }
+    useEffect(() => {
+      const spentTotal = expenses.reduce( (total, expense) => expense.amount + total, 0)
+      setSpent(spentTotal)
+
+      const newAvailable = budget - spentTotal
+      setAvailable(newAvailable)
+    }, [expenses])
+    
 
   return (
     <div className='container-budget container shadow two-columns'>
@@ -25,10 +34,10 @@ const BudgetControl = () => {
             <span>Budget:</span> {amountFormat(budget)}
         </p>
         <p>
-            <span>Available:</span> {amountFormat(budget)}
+            <span>Available:</span> {amountFormat(available)}
         </p>
         <p>
-            <span>Spent:</span> {amountFormat(budget)}
+            <span>Spent:</span> {amountFormat(spent)}
         </p>
       </div>
     </div>
