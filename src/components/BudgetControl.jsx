@@ -22,7 +22,6 @@ const BudgetControl = () => {
       setAvailable(newAvailable)
     }, [expenses])
     
-
   return (
     <div className='container-budget container shadow two-columns'>
       <div>
@@ -30,15 +29,9 @@ const BudgetControl = () => {
       </div>
 
       <div className='budget-content'>
-        <p>
-            <span>Budget:</span> {amountFormat(budget)}
-        </p>
-        <p>
-            <span>Available:</span> {amountFormat(available)}
-        </p>
-        <p>
-            <span>Spent:</span> {amountFormat(spent)}
-        </p>
+        <p> <span>Budget:</span> {amountFormat(budget)} </p>
+        <p> <span>Available:</span> {amountFormat(available)} </p>
+        <p> <span>Spent:</span> {amountFormat(spent)} </p>
       </div>
     </div>
   )

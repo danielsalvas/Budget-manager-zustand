@@ -19,4 +19,9 @@ export const useStore = create((set, get) => ({
   setCategory: (newCategory) => set({ category: newCategory }),
   setExpenses: (expenses) => set({ expenses: expenses }),
   setEditExpense: (expense) => set({ editExpense: expense }),
+  deleteExpense: (id) => {
+    const updatedExpenses = get().expenses.filter(expense => expense.id !== id )
+
+    get().setExpenses(updatedExpenses)
+  }
 }));

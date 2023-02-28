@@ -8,6 +8,8 @@ import { useStore } from './store'
 
 function App() {
 
+  //States and constants
+
   const { isValidBudget, modal, expenses, editExpense } = useStore(
     (state) => ({ 
       isValidBudget: state.isValidBudget, 
@@ -27,8 +29,9 @@ function App() {
       }, 300);
     }
   }, [ editExpense ])
-  
 
+  //Functions
+  
   const handleNewExpense = () => {
     setModal(true)
     setEditExpense({})
@@ -43,8 +46,8 @@ function App() {
     if (expense.id) {
       // If there exist an ID, it means we're editing and updating the data
       const updatedExpenses = expenses.map( expenseState => expenseState.id === expense.id ? expense : expenseState)
-
       setExpenses(updatedExpenses)
+      setEditExpense({})
 
     } else {
       //If there is no an id, it means we're adding a new entry

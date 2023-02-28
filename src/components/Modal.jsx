@@ -18,7 +18,7 @@ const Modal = ({ keepExpense}) => {
           category: state.category,
           editExpense: state.editExpense,
         }));
-    const { setModal, setAnimationModal, setName, setAmount, setCategory } = useStore();
+    const { setModal, setAnimationModal, setName, setAmount, setCategory, setEditExpense } = useStore();
 
     //Functions
 
@@ -36,7 +36,7 @@ const Modal = ({ keepExpense}) => {
       }, [ ])
     
     const closeModal = () => {
-        
+        setEditExpense({})
         setAnimationModal(false)
 
         setTimeout(() => {

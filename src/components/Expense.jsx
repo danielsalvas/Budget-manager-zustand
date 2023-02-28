@@ -31,7 +31,7 @@ const Expense = ({ expense }) => {
         editExpense: state.editExpense
       }));
 
-    const { setEditExpense } = useStore();
+    const { setEditExpense, deleteExpense } = useStore();
 
     //FUNCTIONS
 
@@ -45,7 +45,7 @@ const Expense = ({ expense }) => {
 
     const trailingActions = () => (
       <TrailingActions>
-        <SwipeAction onClick={() => console.log('eliminando') }>
+        <SwipeAction onClick={() => deleteExpense(id)} destructive={true} >
           Delete
         </SwipeAction>
       </TrailingActions>
