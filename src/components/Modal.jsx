@@ -38,9 +38,12 @@ const Modal = ({ keepExpense}) => {
                 setMessage('')
             }, 3000);
             return
-        }
+        } else
 
         keepExpense({ name, amount, category})
+        setAmount(0)
+        setName('')
+        setCategory('')
     }
 
   return (
