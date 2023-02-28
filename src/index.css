@@ -336,9 +336,16 @@ main {
     font-size: 2.4rem;
 }
 
-@media (max-width: 768px){
+@media (max-width: 767px){
     .new-expense .new {
         display: none;
+    }
+    .expense-content img {
+        width: 6rem;
+    }
+
+    .expense-description .expense-name {
+        font-size: 1.4rem;
     }
 }
 

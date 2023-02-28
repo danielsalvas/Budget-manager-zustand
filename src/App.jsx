@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import ExpensesList from './components/ExpensesList'
 import Header from './components/Header'
 import Modal from './components/Modal'
@@ -8,17 +8,30 @@ import { useStore } from './store'
 
 function App() {
 
-  const { isValidBudget, modal, expenses } = useStore(
+  const { isValidBudget, modal, expenses, editExpense } = useStore(
     (state) => ({ 
       isValidBudget: state.isValidBudget, 
       modal: state.modal,
       expenses: state.expenses,
+      editExpense: state.editExpense,
     }));
 
-  const { setModal, setAnimationModal, setExpenses } = useStore();
+  const { setModal, setAnimationModal, setExpenses, setEditExpense } = useStore();
+
+  useEffect(() => {
+    if (Object.keys(editExpense).length > 0) {
+      setModal(true)
+    
+      setTimeout(() => {
+        setAnimationModal(true)
+      }, 300);
+    }
+  }, [ editExpense ])
+  
 
   const handleNewExpense = () => {
     setModal(true)
+    setEditExpense({})
 
     setTimeout(() => {
       setAnimationModal(true)
@@ -26,9 +39,19 @@ function App() {
   }
 
   const keepExpense = (expense) => {
-    expense.id = generateId()
-    expense.date = Date.now()
-    setExpenses([...expenses, expense])
+
+    if (expense.id) {
+      // If there exist an ID, it means we're editing and updating the data
+      const updatedExpenses = expenses.map( expenseState => expenseState.id === expense.id ? expense : expenseState)
+
+      setExpenses(updatedExpenses)
+
+    } else {
+      //If there is no an id, it means we're adding a new entry
+      expense.id = generateId()
+      expense.date = Date.now()
+      setExpenses([...expenses, expense])
+    }
 
     setAnimationModal(false)
 

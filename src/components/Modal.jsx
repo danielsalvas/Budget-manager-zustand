@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Message from './Message';
 import { useStore } from '../store';
 import closeBtn from '../img/close.svg';
@@ -8,16 +8,32 @@ const Modal = ({ keepExpense}) => {
     //State and constants
 
     const [message, setMessage] = useState('')
-    const { animationModal, name, amount, category } = useStore(
+    const [date, setDate] = useState('')
+    const [id, setId] = useState('')
+    const { animationModal, name, amount, category, editExpense } = useStore(
         (state) => ({ 
           animationModal: state.animationModal,
           name: state.name,
           amount: state.amount,
           category: state.category,
+          editExpense: state.editExpense,
         }));
-    const { setModal, setAnimationModal, setName, setAmount, setCategory, setExpenses } = useStore();
+    const { setModal, setAnimationModal, setName, setAmount, setCategory } = useStore();
 
     //Functions
+
+    useEffect(() => {
+        setAmount(0)
+        setName('')
+        setCategory('')
+        if (Object.keys(editExpense).length > 0) {
+          setName(editExpense.name)
+          setAmount(editExpense.amount)
+          setCategory(editExpense.category)
+          setId(editExpense.id)
+          setDate(editExpense.date)
+        }
+      }, [ ])
     
     const closeModal = () => {
         
@@ -40,10 +56,7 @@ const Modal = ({ keepExpense}) => {
             return
         } else
 
-        keepExpense({ name, amount, category})
-        setAmount(0)
-        setName('')
-        setCategory('')
+        keepExpense({ name, amount, category, id, date})
     }
 
   return (
@@ -60,7 +73,7 @@ const Modal = ({ keepExpense}) => {
             className={`form ${ animationModal ? 'animation' : 'close'}`}
             onSubmit={handleSubmit}
         >
-            <legend>New Expense</legend>
+            <legend>{editExpense.name ? 'Edit Expense' : 'New Expense' }</legend>
 
             {message && <Message type='error'>{message}</Message> }
 
@@ -107,7 +120,7 @@ const Modal = ({ keepExpense}) => {
 
             <input 
                 type="submit" 
-                value="Add expense"
+                value={editExpense.name ? 'Save Changes' : 'Add Expense' }
             />
         </form>
     </div>

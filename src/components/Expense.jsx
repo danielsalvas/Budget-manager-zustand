@@ -1,5 +1,6 @@
 import { LeadingActions, SwipeableList, SwipeableListItem, SwipeAction, TrailingActions } from "react-swipeable-list"
 import 'react-swipeable-list/dist/styles.css'
+import { useStore } from "../store"
 import { dateFormat } from "../helpers"
 import saveIcon from '../img/save-icon.svg'
 import funIcon from '../img/fun-icon.svg'
@@ -9,23 +10,34 @@ import healthIcon from '../img/health-icon.svg'
 import houseIcon from '../img/house-icon.svg'
 import suscriptionsIcon from '../img/suscriptions-icon.svg'
 
+const iconsDictionary = {
+  saving : saveIcon,
+  food : foodIcon ,
+  home : houseIcon ,
+  fun : funIcon ,
+  various : expenseIcon ,
+  health : healthIcon ,
+  suscriptions : suscriptionsIcon ,
+}
+
 const Expense = ({ expense }) => {
 
-    const iconsDictionary = {
-      saving : saveIcon,
-      food : foodIcon ,
-      home : houseIcon ,
-      fun : funIcon ,
-      various : expenseIcon ,
-      health : healthIcon ,
-      suscriptions : suscriptionsIcon ,
-    }
+  //State and constants
 
     const { category, name, date, amount, id } = expense
 
+    const { editExpense } = useStore(
+      (state) => ({ 
+        editExpense: state.editExpense
+      }));
+
+    const { setEditExpense } = useStore();
+
+    //FUNCTIONS
+
     const leadingActions = () => (
       <LeadingActions>
-        <SwipeAction onClick={() => console.log('editanto') }>
+        <SwipeAction onClick={() => setEditExpense(expense) }>
           Edit
         </SwipeAction>
       </LeadingActions>
