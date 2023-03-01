@@ -237,17 +237,17 @@ main {
     padding-top: 10rem;
 }
 
-.filtros .field {
+.filters .field {
     display: flex;
     align-items: center;
     gap: 2rem;
 }
-.filtros label {
+.filters label {
     font-size: 3rem;
     font-weight: 900;
     color: var(--dark-gray);
 }
-.filtros select {
+.filters select {
     flex: 1;
     padding: 1rem;
     border: none;

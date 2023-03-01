@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import ExpensesList from './components/ExpensesList'
+import Filters from './components/Filters'
 import Header from './components/Header'
 import Modal from './components/Modal'
 import { generateId } from './helpers'
@@ -10,16 +11,17 @@ function App() {
 
   //States and constants
 
-  const { isValidBudget, modal, expenses, editExpense, budget } = useStore(
+  const { isValidBudget, modal, expenses, editExpense, budget, filter } = useStore(
     (state) => ({ 
       budget: state.budget, 
       isValidBudget: state.isValidBudget, 
       modal: state.modal,
       expenses: state.expenses,
       editExpense: state.editExpense,
+      filter: state.filter,
     }));
 
-  const { setModal, setIsValidBudget, setAnimationModal, setExpenses, setEditExpense } = useStore();
+  const { setModal, setIsValidBudget, setAnimationModal, setExpenses, setEditExpense, setFilteredExpenses, handleNewExpense } = useStore();
 
   useEffect(() => {
     if (Object.keys(editExpense).length > 0) {
@@ -40,6 +42,14 @@ function App() {
   }, [expenses])
 
   useEffect(() => {
+    if (filter) {
+      const filteredExpenses = expenses.filter( expense => expense.category === filter )
+      setFilteredExpenses(filteredExpenses)
+    }
+  }, [filter])
+  
+
+  useEffect(() => {
     const budgetLS = Number(localStorage.getItem('budget')) ?? 0;
 
     if (budgetLS > 0) {
@@ -48,15 +58,6 @@ function App() {
   }, [])
   
   //Functions
-  
-  const handleNewExpense = () => {
-    setModal(true)
-    setEditExpense({})
-
-    setTimeout(() => {
-      setAnimationModal(true)
-    }, 300);
-  }
 
   const keepExpense = (expense) => {
 
@@ -87,6 +88,7 @@ function App() {
       { isValidBudget && (
         <>
           <main>
+            <Filters />
             <ExpensesList />
           </main>
 

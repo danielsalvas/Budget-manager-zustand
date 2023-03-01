@@ -20,6 +20,9 @@ export const useStore = create((set, get) => ({
   category: '',
   expenses: initialExpenses(),
   editExpense: {},
+  filter: '',
+  editExpense: {},
+  filteredExpenses: [],
   setBudget: (newBudget) => set({ budget: newBudget }),
   setIsValidBudget: (newState) => set({ isValidBudget: newState }),
   setModal: (newState) => set({ modal: newState }),
@@ -29,9 +32,19 @@ export const useStore = create((set, get) => ({
   setCategory: (newCategory) => set({ category: newCategory }),
   setExpenses: (expenses) => set({ expenses: expenses }),
   setEditExpense: (expense) => set({ editExpense: expense }),
+  setFilter: (value) => set({ filter: value }),
+  setFilteredExpenses: (newFilteredExpenses) => set({ filteredExpenses: newFilteredExpenses }),
   deleteExpense: (id) => {
     const updatedExpenses = get().expenses.filter(expense => expense.id !== id )
 
     get().setExpenses(updatedExpenses)
+  },
+  handleNewExpense: () => {
+    get().setModal(true)
+    get().setEditExpense({})
+
+    setTimeout(() => {
+      get().setAnimationModal(true)
+    }, 300);
   }
 }));
