@@ -73,7 +73,6 @@ function App() {
       expense.date = Date.now()
       setExpenses([...expenses, expense])
     }
-
     setAnimationModal(false)
 
         setTimeout(() => {

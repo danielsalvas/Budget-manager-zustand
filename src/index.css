@@ -78,8 +78,9 @@ header h1 {
     border-bottom: 2px solid var(--blue);
 }
 .form .field {
-    display: grid;
+    display: flex;
     margin-bottom: 2rem;
+    flex-direction: column;
 }
 
 .form label {
