@@ -207,8 +207,8 @@ header h1 {
         text-align: left;
     }
 }
-.budget-content p.negativo,
-.budget-content p.negativo span {
+.budget-content p.negative,
+.budget-content p.negative span {
     color: red;
 }
 .budget-content span {

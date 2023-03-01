@@ -46,5 +46,15 @@ export const useStore = create((set, get) => ({
     setTimeout(() => {
       get().setAnimationModal(true)
     }, 300);
+  },
+  handleResetApp: () => {
+
+    const result = confirm('Do you want to reset the app?') 
+    
+    if (result) {
+      get().setExpenses([])
+      get().setBudget(0)
+      get().setIsValidBudget(false)
+    }
   }
 }));

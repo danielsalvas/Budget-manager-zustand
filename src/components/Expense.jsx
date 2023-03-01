@@ -22,7 +22,7 @@ const iconsDictionary = {
 
 const Expense = ({ expense }) => {
 
-  //State and constants
+    //State and constants
 
     const { category, name, date, amount, id } = expense
 
