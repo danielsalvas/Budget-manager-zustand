@@ -7,11 +7,9 @@ const NewBudget = () => {
     //States, Constants and Variables
 
     const [message, setMessage] = useState('')
-
     const { budget } = useStore(
         (state) => ({ budget: state.budget })
     );
-
     const { setBudget, setIsValidBudget } = useStore();
 
     //Functions
@@ -25,7 +23,6 @@ const NewBudget = () => {
         }
 
         setMessage('')
-
         setIsValidBudget(true)
     }
 

@@ -19,8 +19,7 @@ const ExpensesList = () => {
           {
             filteredExpenses.map( expense => (
               <Expense key={expense.id} expense={expense} />
-            ))
-          }
+          ))}
         </>
       ) : (
         <>
