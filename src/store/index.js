@@ -1,7 +1,12 @@
 import { create } from "zustand";
 
+  const initialBudget = () => {
+    const storedBudget = localStorage.getItem('budget');
+    return storedBudget ? JSON.parse(storedBudget) : 0;
+  };
+
 export const useStore = create((set, get) => ({
-  budget: 0,
+  budget: initialBudget(),
   isValidBudget: false,
   modal: false,
   animationModal: false,

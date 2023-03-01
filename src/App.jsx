@@ -10,8 +10,9 @@ function App() {
 
   //States and constants
 
-  const { isValidBudget, modal, expenses, editExpense } = useStore(
+  const { isValidBudget, modal, expenses, editExpense, budget } = useStore(
     (state) => ({ 
+      budget: state.budget, 
       isValidBudget: state.isValidBudget, 
       modal: state.modal,
       expenses: state.expenses,
@@ -29,6 +30,11 @@ function App() {
       }, 300);
     }
   }, [ editExpense ])
+
+  useEffect(() => {
+    localStorage.setItem('budget', budget ?? 0)
+  }, [budget])
+  
 
   //Functions
   
