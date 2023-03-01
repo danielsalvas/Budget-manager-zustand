@@ -2,7 +2,12 @@ import { create } from "zustand";
 
   const initialBudget = () => {
     const storedBudget = localStorage.getItem('budget');
-    return storedBudget ? JSON.parse(storedBudget) : 0;
+    return storedBudget ? Number(storedBudget) : 0;
+  };
+
+  const initialExpenses = () => {
+    const storedExpenses = localStorage.getItem('expenses');
+    return storedExpenses ? JSON.parse(storedExpenses) : [];
   };
 
 export const useStore = create((set, get) => ({
@@ -13,7 +18,7 @@ export const useStore = create((set, get) => ({
   name: '',
   amount: 0,
   category: '',
-  expenses: [],
+  expenses: initialExpenses(),
   editExpense: {},
   setBudget: (newBudget) => set({ budget: newBudget }),
   setIsValidBudget: (newState) => set({ isValidBudget: newState }),

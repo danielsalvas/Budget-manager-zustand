@@ -19,7 +19,7 @@ function App() {
       editExpense: state.editExpense,
     }));
 
-  const { setModal, setAnimationModal, setExpenses, setEditExpense } = useStore();
+  const { setModal, setIsValidBudget, setAnimationModal, setExpenses, setEditExpense } = useStore();
 
   useEffect(() => {
     if (Object.keys(editExpense).length > 0) {
@@ -34,8 +34,19 @@ function App() {
   useEffect(() => {
     localStorage.setItem('budget', budget ?? 0)
   }, [budget])
-  
 
+  useEffect(() => {
+    localStorage.setItem('expenses', JSON.stringify(expenses) ?? [])
+  }, [expenses])
+
+  useEffect(() => {
+    const budgetLS = Number(localStorage.getItem('budget')) ?? 0;
+
+    if (budgetLS > 0) {
+      setIsValidBudget(true)
+    }
+  }, [])
+  
   //Functions
   
   const handleNewExpense = () => {
