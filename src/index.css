@@ -365,6 +365,7 @@ main {
     left: 0;
     right: 0;
     bottom: 0;
+    height: 100vh;
 }
 .modal .close-modal {
     position: absolute;
@@ -373,6 +374,7 @@ main {
     width: 3rem;
     height: 3rem;
     cursor: pointer;
+    z-index: 1;
 }
 .modal .close-modal img {
     width: 100%;
